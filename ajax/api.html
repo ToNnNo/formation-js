@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Api</title>
+    <style>
+        .table { width: 100%; border-collapse: collapse; border-spacing: 0; }
+        .table thead td { border-bottom: 1px solid #ccc; padding: 6px }
+        .table tbody td { border-top: 1px solid #ccc; padding: 6px }
+    </style>
+    <script>
+
+        function afficher(json){
+            let html = "";
+
+            for( user of json){
+                html += `<tr>
+    <td>${user.id}</td>
+    <td>${user.name}</td>
+    <td>${user.username}</td>
+    <td>${user.email}</td>
+    <td>${user.phone}</td>
+    <td>${user.website}</td>
+</tr>`;
+            }
+
+            document.querySelector('.table tbody').innerHTML = html;
+        }
+
+        function loadUsers(){
+
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then( (response) => response.json() )
+                .then( (json) => {
+                    afficher(json);
+                });
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Fetch</h1>
+    <hr />
+
+    <button onclick="loadUsers()">Afficher les Utilisateurs</button>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Username</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Website</td>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+</body>
+</html>

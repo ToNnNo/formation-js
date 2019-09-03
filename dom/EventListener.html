@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Listener</title>
+    <script>
+
+        window.addEventListener('DOMContentLoaded', function(){
+            let exemple = document.querySelector(".exemple");
+
+            exemple.addEventListener('click', function(){
+                alert('Parfait !');
+            });
+
+            let btns = document.querySelectorAll(".btn");
+
+            for( btn of btns ){
+                btn.addEventListener('click', function(){
+
+                    let name = this.getAttribute('name');
+                    let dataname = this.dataset.name;
+                    let message = this.dataset.message;
+
+                    document.querySelector('#action').innerText = name;
+                    document.querySelector('#data').innerText = dataname;
+
+                    alert(message);
+                });
+            }
+
+        });
+
+    </script>
+</head>
+<body>
+
+<h1>Event Listener</h1>
+<hr />
+
+<button class="exemple">Exemple</button>
+<hr />
+
+<p>
+    <button class="btn" name="Ajouter" data-name="Ajouter" data-message="La valeur va être ajoutée !">Ajouter</button>
+    <button class="btn" name="Annuler" data-name="Annuler" data-message="Annuler cette action">Annuler</button>
+    <button class="btn" name="Supprimer" data-name="Supprimer" data-message="Valeur supprimée">Supprimer</button>
+</p>
+
+<p> Name = <span id="action"></span></p>
+<p> Data Name = <span id="data"></span></p>
+
+</body>
+</html>

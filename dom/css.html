@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS</title>
+    <script>
+
+        function changeColor(){
+            let target = document.querySelector("#target");
+
+            target.style.color = "red";
+        }
+
+        window.addEventListener('DOMContentLoaded', function(){
+            let buttons = document.querySelectorAll('[data-color]');
+            let btn = document.querySelector('[data-toggle=display]');
+
+            console.log(btn);
+
+            for(button of buttons){
+                button.addEventListener('click', function(){
+                    let color = this.dataset.color;
+                    let target = this.dataset.target;
+
+                    document.querySelector(target).style.color = color;
+                })
+            }
+
+            btn.addEventListener('click', function(){
+                document.querySelector('.information').classList.toggle('active');
+            });
+
+            let positions = document.querySelectorAll("[data-position]");
+            let image = document.querySelector('.image');
+
+            for(position of positions){
+                position.addEventListener('click', function(){
+
+                    image.classList.remove('align-left', 'align-right');
+                    image.classList.add(`align-${this.dataset.position}`);
+                });
+            }
+        });
+
+    </script>
+    <style>
+        .information{ display: none }
+        .active{ display: block }
+
+        .image{ transition: transform 1s; }
+        .align-left{ transform: translate(0) }
+        .align-right{ transform: translate(calc(100vw - 8px - 571px)) }
+    </style>
+</head>
+<body>
+
+<h1>CSS</h1>
+<hr />
+
+<button onclick="changeColor()">change color</button>
+
+<p id="target">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad aliquam consectetur eum excepturi fugiat ipsam
+    laudantium numquam, quas quia similique sit soluta, vel? Consequuntur, repellendus voluptatem. Corporis, ex, nihil.
+</p>
+
+<p>
+    <button data-color="red" data-target="#target">Rouge</button>
+    <button data-color="forestgreen" data-target="#target">Vert</button>
+    <button data-color="dodgerblue" data-target="#target">Bleu</button>
+</p>
+
+<hr />
+
+<button data-toggle="display">Afficher plus d'information</button>
+
+<p class="information">
+    <span>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque cum dolores iusto minus quo recusandae saepe
+        sed voluptate. Delectus eius incidunt porro quis, saepe tempora. Deserunt facilis ipsa optio tenetur.
+    </span>
+    <span>
+        Aliquam amet animi aspernatur debitis dignissimos dolorem exercitationem expedita fuga laborum magni,
+        molestiae mollitia nobis odio quos rerum similique veritatis voluptates. Culpa iste iusto quaerat quasi quod
+        repellendus, sequi ut?
+    </span>
+</p>
+
+<hr />
+
+<p>
+    <button data-position="left">Gauche</button>
+    <button data-position="right">Droite</button>
+</p>
+
+<img src="../images/informatique.jpg" alt="informatique" class="image" style="width:30%" />
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

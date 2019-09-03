@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab Bar</title>
+    <style>
+        .tabbar-content { display: none }
+        .tabbar-content.active { display: block }
+
+        .tabbar-nav-item { color: dodgerblue; text-decoration: none }
+        .tabbar-nav-item.active { color: darkorchid; text-decoration: underline }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', function(){
+            let links = document.querySelectorAll('.tabbar-nav-item');
+
+            for(link of links){
+                link.addEventListener('click', function(e){
+                    e.preventDefault();
+                    document.querySelector('.tabbar-content.active').classList.remove('active');
+                    document.querySelector('.tabbar-nav-item.active').classList.remove('active');
+
+                    let id = this.getAttribute('href');
+                    this.classList.add('active');
+                    document.querySelector(id).classList.add('active');
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+
+<h1>Tab Bar</h1>
+<hr />
+
+<nav>
+    <a href="#accueil" class="tabbar-nav-item active">Accueil</a> -
+    <a href="#a-propos" class="tabbar-nav-item">A propos</a> -
+    <a href="#contact" class="tabbar-nav-item">Contact</a>
+</nav>
+
+<section>
+    <article id="accueil" class="tabbar-content active">
+        <h2>Accueil</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias consectetur distinctio ducimus
+            neque, nobis numquam praesentium sapiente? Ad corporis cum dignissimos id illo nihil officia porro quaerat
+            quibusdam quod!</p>
+    </article>
+
+    <article id="a-propos" class="tabbar-content">
+        <h2>A propos</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium adipisci architecto culpa distinctio
+            inventore laboriosam, nisi odio perspiciatis quam qui quidem voluptas voluptatibus. Error, fugiat, quasi.
+            Fugiat nihil, velit.</p>
+        <p>Amet aperiam architecto autem consectetur consequuntur cupiditate deleniti dolorum explicabo illo, iure
+            laudantium magni necessitatibus nulla perspiciatis porro possimus quas reprehenderit saepe sint sunt tempora
+            temporibus ullam? Nobis, quos, vero!</p>
+    </article>
+
+    <article id="contact" class="tabbar-content">
+        <h2>Contact</h2>
+        <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid animi autem dolor facilis necessitatibus placeat! Adipisci blanditiis delectus, dolorem doloremque doloribus dolorum eius est neque nihil quas! Accusamus, tempora!</span><span>Ad assumenda, commodi delectus ducimus eos fugiat fugit ipsum iure numquam officiis quos reiciendis similique sint veniam voluptatibus? Delectus dicta, est ipsa itaque libero magni modi nobis non numquam. Sit?</span><span>Ab adipisci cum distinctio expedita laborum necessitatibus numquam omnis praesentium quidem quis quos, sapiente suscipit tempora tempore ullam veniam voluptatum. Ab cumque enim esse eveniet ipsum quidem, ratione similique tenetur?</span>
+        </p>
+    </article>
+</section>
+
+</body>
+</html>

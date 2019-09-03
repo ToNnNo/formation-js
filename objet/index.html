@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objet</title>
+    <script>
+
+        // Object => JSON = JavaScript Object Notation
+
+        let object = new Object();
+        object.foo = 'bar'; // attributs
+        object.baz = function(){
+            return 'Hello';
+        };
+
+        // Syntax JSON
+        let json = { foo: 'bar', bar: 'baz', users: [], private: { public: 'protected' } };
+
+        // Objet litteral (Module JS(ES6))
+        let jsonObject = {
+            foo: 'bar',
+            baz: function(){ return 'Hello' },
+            bar: () => { return 'World' }
+        };
+
+        // Module ES5 iife Immediately Invoked Function Expression
+        (function(){
+            console.log('Module iife');
+        })();
+
+        console.log(object, object.foo);
+        console.log(json);
+        console.log(jsonObject.foo, jsonObject.bar(), jsonObject.baz());
+
+        let foo = 'foo', bar = 'bar';
+
+        // property shorthand
+        let foobar = { foo, bar }; // { foo: foo, bar: bar }
+
+        console.log(foobar);
+
+        let contact = {
+            id: 1, name: 'John Doe',
+            phone: '06 118 218',
+            email: 'john.doe@gmail.com'
+        };
+
+        // destructuration !
+        let { id: identifiant, name, phone, email, address = null } = contact;
+
+        console.log(identifiant, name, phone, email, address);
+
+        let contacts = [
+            {id: 1, name: 'John Snow', email: 'john.snow@gmail.com'},
+            {id: 2, name: 'Aria Stark', email: 'aria.stark@gmail.com'},
+            {id: 3, name: 'Tyrion Lannister', email: 'tyrion.lannister@gmail.com'},
+            {id: 4, name: 'Daenerys Targaryen', email: 'daenerys.targarien@gmail.com'},
+        ];
+
+        /**
+         * Rechercher l'adresse email du contact avec id = 3 (find(callable))
+         */
+
+        let obj = contacts.find( contact => {
+            return contact.id === 3
+        });
+
+        console.log(obj.email);
+
+        console.log( contacts.find(contact => contact.id === 3).email );
+
+        let partOne = { name: 'John Doe', email: 'john.doe@gmail.com' };
+        let partTwo = { phone: '06 118 218 00', city: 'Lille' };
+        let user = {};
+
+        Object.assign(user, partOne, partTwo);
+
+        console.log(user);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

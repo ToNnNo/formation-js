@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+    <script>
+
+        // xhr => XMLHttpRequest
+
+        window.addEventListener('DOMContentLoaded', function(){
+            let xhr = new XMLHttpRequest();
+            let readFile = document.querySelector('#readFile');
+            let contentFile = document.querySelector("#contentFile");
+
+            readFile.addEventListener('click', function(){
+
+                xhr.open('GET', './document/file.txt', false);
+                xhr.send();
+
+                contentFile.innerText = xhr.responseText;
+            });
+
+            let readFileAsync = document.querySelector('#readFileAsync');
+            let contentFileAsync = document.querySelector("#contentFileAsync");
+
+            readFileAsync.addEventListener('click', function(){
+
+                xhr.onreadystatechange = function(){
+
+                    contentFileAsync.innerText = "En attente d'une réponse du serveur";
+
+                    if( xhr.readyState === xhr.DONE ){
+                        setTimeout(() => {
+                            contentFileAsync.innerText = xhr.responseText;
+                        }, 1500);
+                    }
+
+                };
+
+                xhr.open('GET', './document/file.txt', true);
+                xhr.send();
+            });
+
+            let btn = document.querySelector("#send");
+            let result = document.querySelector("#result");
+
+            btn.addEventListener('click', function(){
+
+                let name = document.querySelector('#name').value;
+                let url = `http://localhost:8888/ajax/index.php?name=${name}`;
+
+                console.log(url);
+
+                xhr.onreadystatechange = function(){
+
+                    result.innerText = "En attente d'une réponse du serveur";
+
+                    if( xhr.readyState === 4 && xhr.status === 200){
+                        setTimeout(() => {
+                            result.innerText = xhr.responseText;
+                        }, 1500);
+                    }
+
+                };
+
+                xhr.open('GET', url, true);
+                xhr.send();
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+
+<h1>Ajax</h1>
+<hr />
+
+<button id="readFile">Lire le fichier file.txt (Synchrone)</button>
+<p id="contentFile"></p>
+
+<hr />
+
+<button id="readFileAsync">Lire le fichier file.txt (Asynchrone)</button>
+<p id="contentFileAsync"></p>
+
+<hr />
+
+<input type="text" id="name" placeholder="Entrer un nom" />
+<button id="send">Envoyer</button>
+<p id="result"></p>
+
+</body>
+</html>

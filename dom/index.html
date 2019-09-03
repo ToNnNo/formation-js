@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document Object Model</title>
+    <script>
+
+        function moreInformation(){
+            alert('Aucune information disponible');
+        }
+
+        function changeImage(path){
+            let image = document.getElementById('image');
+
+            image.src = path;
+        }
+
+        function showMessage(){
+            let input = document.querySelector('[type=text]');
+            let message = document.querySelector('#message');
+
+            if( input.value === "" ){
+                alert('Veuillez saisir un message');
+                input.focus();
+            } else {
+                //message.innerHTML = input.value;
+                message.innerText = input.value;
+            }
+
+            input.value = "";
+            //input.value = null;
+        }
+
+        function toggleType(){
+            let password = document.querySelector("#password");
+
+            if( password.type === "password" ){
+                password.type = "text";
+            } else {
+                password.type = "password";
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+    <h1>Document Object Model</h1>
+    <hr />
+
+    <h2>Click Event</h2>
+    <p onclick="alert('Bravo !')">Cliquez ici !!</p>
+
+    <p onclick="moreInformation()">Pour plus d'information cliquez ici.</p>
+
+    <h2>Mouse Event</h2>
+    <img src="../images/science.jpg" id="image" alt="La science" onmouseover="changeImage('../images/informatique.jpg')"
+         onmouseleave="changeImage('../images/science.jpg')" />
+
+    <h2>Inner HTML/Text</h2>
+
+    <p>
+        <input type="text" value="" placeholder="Entrer votre message" />
+        <button onclick="showMessage()">Valider</button>
+    </p>
+    <p id="message"></p>
+
+    <hr />
+
+    <p>
+        <label>Password: </label>
+        <input type="password" id="password" name="password" value="" />
+        <button onclick="toggleType()">Voir</button>
+    </p>
+
+</body>
+</html>

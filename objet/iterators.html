@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iterator & Generator</title>
+    <script>
+
+        let i = 0;
+        i++; // i = 1
+
+        console.log(i++); // i = 1; i = 2
+        console.log(++i); // i = 3; i = 3
+
+
+        // Iterator
+
+        let ArrayCollection = {
+            values: [],
+            add: function(value){
+                this.values.push(value);
+                return this;
+            },
+            [Symbol.iterator](){
+                let index = 0;
+                let values = this.values;
+                return {
+                    next(){
+                        return { value: values[index++], done: values.length < index }
+                    }
+                }
+            }
+        };
+
+        ArrayCollection.add(1).add(2).add(3);
+
+        for(value of ArrayCollection){
+            console.log(value);
+        }
+
+        // Generator
+
+        function * generator_count(limit){
+            let index = 0;
+
+            while (index <= limit){
+                yield index;
+                index++;
+            }
+        }
+
+        for(value of generator_count(10)){
+            console.log(value);
+        }
+
+        function * nombre_premier(start, end){
+            let isPremier = true ;
+            if(start < 2) start = 2;
+
+            for (let i = start; i<end; i++) {
+
+                for(let j = 2; j <= (Math.sqrt(i)); j++) {
+                    if (i % j === 0) {
+                        isPremier = false;
+                        break;
+                    }
+                }
+
+                if(isPremier){
+                    yield i;
+                } else {
+                    isPremier = true;
+                }
+            }
+        }
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

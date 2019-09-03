@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript</title>
+    <script src="presentation.js"></script>
+    <script>
+        /* commentaire */
+
+        /* EcmaScript ~ ES */
+
+        // variable
+        var maVariable = "Hello"; // deprecated
+        let newVariable = "World"; // recommanded
+
+        // constante
+        const MACONSTANTE = "Fixed";
+
+        console.log( 2**2, Math.pow(2, 2) );
+
+        console.log( '1' == 1, '1' === 1 );
+
+        /**
+         * Type variable
+         * String
+         * int
+         * float
+         * bool
+         * Array
+         * Object (json)
+         */
+
+        console.log('Hello World'.toUpperCase());
+        let n = null;
+        let u = undefined;
+        let nan = NaN; // Not a Number
+
+        // let tableau = new Array("machin");
+        let tableau = ['machin', 'machine'];
+
+        console.log(tableau);
+
+        if( newVariable === 'World') {
+            console.log('Hello World');
+        } else {
+            console.log('Pas Hello World ...');
+        }
+
+        for(let i = 1; i <= 10; i++){
+            console.log( "7 x "+i+" = "+(7*i));
+        }
+
+
+        let table = '';
+        for( let i = 1; i <= 10; i++ ){
+            for( let j = 1; j <= 10; j++ ){
+                let result = String(i*j);
+                table += result.padStart(3, ' ')+" ";
+            }
+            table += "\n";
+        }
+
+        console.log(table);
+
+        let date = new Date();
+
+        switch(date.getDay()) { // 0 = dimanche; 6 = samedi
+            case 1:
+                console.log("Lundi");
+                break;
+            case 2:
+                console.log("Mardi");
+                break;
+            case 6:
+            case 0:
+                console.log("Week end");
+                break;
+            default:
+                console.log("???");
+        }
+
+        let w = 10;
+        while(w > 1){
+            console.log(" w = " + w);
+            w--;
+        }
+
+        // boite de dialog
+
+        //alert("Hello World");
+
+        /*if( confirm("Etes vous sur ?") ){
+            console.log("Oui je suis sur !");
+        }*/
+
+        /*let chose = prompt("Que voulez vous ?");
+        console.log(chose);*/
+
+        let name = prompt("Entrer un nom");
+        while(name != null){
+            console.log(name);
+            name = prompt("Entrer un nom");
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

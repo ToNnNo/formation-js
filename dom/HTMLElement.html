@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Element</title>
+    <script>
+
+        function displayBlock(btn){
+
+            if( btn.innerText === "Afficher un block" ){
+                btn.innerText = "Masquer le block";
+
+                let container = document.createElement("div");
+
+                let p = document.createElement("p");
+                let content = document.createTextNode("Lorem ipsum dolor sit amet, consectetur adipisicing elit. " +
+                    "A architecto et harum hic laudantium modi mollitia neque odit placeat, sequi tempore voluptatem. " +
+                    "Iste nam nemo nihil perferendis quae qui sunt.");
+                p.addEventListener('click', function(){ alert('coucou'); });
+
+                p.appendChild(content);
+
+                let html = document.createElement("p");
+                let htmlTextNode = document.createTextNode("<strong>Ceci est du html</strong>");
+                html.innerHTML = "<strong>Ceci est du html</strong>";
+
+                container.appendChild(p).appendChild(html);
+
+                btn.after(container);
+
+            } else {
+                btn.innerText = "Afficher un block";
+
+                btn.nextElementSibling.remove();
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+<h1>HTML Element</h1>
+<hr />
+
+<button onclick="displayBlock(this)">Afficher un block</button>
+
+
+
+</body>
+</html>

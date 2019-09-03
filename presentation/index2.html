@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Présentation Suite</title>
+    <script>
+        let name = "John Doe";
+
+        // template littéral
+        //console.log('Bonjour '+name+'! Comment ça va ?');
+        console.log(`Bonjour ${name}! Comment ça va ?`);
+
+        console.log(
+`${name}
+256 avenue de la Marne
+59800 Lille`);
+
+        // tableaux
+        let cars = ['Peugeot', 'Citroen', 'Ford', 'Renault', 'Hyundai', 'Seat'];
+
+        console.log(cars);
+
+        console.log(`Mon tableau contient ${cars.length} valeurs,
+la première est ${cars[0]} et la dernière est ${cars[cars.length-1]}`);
+
+        console.log('----- Boucle for -----');
+        for(let i = 0; i < cars.length; i++){
+            console.log(`cars[${i}] = ${cars[i]}`);
+        }
+
+        console.log('----- For in -----');
+        for(index in cars){
+            console.log(`cars[${index}] = ${cars[index]}`);
+        }
+
+        console.log('----- For of -----');
+        for(car of cars){
+            console.log(car);
+        }
+
+        console.log('----- ForEach -----');
+        cars.forEach(function(value, index, array){
+            console.log(`cars[${index}] = ${value}`);
+        });
+
+        cars.push('Fiat');
+        cars.push('Tesla', 'Toyota', 'BMW');
+
+        console.log(cars);
+
+        let removed = cars.splice(cars.indexOf('Fiat'), 1);
+
+        console.log(cars);
+        console.log(`La valeur ${removed} a été supprimée`);
+
+        // remplacer
+        cars.splice(cars.indexOf('Citroen'), 1, 'Alpine');
+        console.log(cars);
+
+        // cars[cars.indexOf('Citroen')] = 'Alpine';
+
+        // ajouter à l'index
+        cars.splice(cars.indexOf('Alpine'), 0, 'Citroen');
+        console.log(cars);
+
+        console.log(cars.join(", "));
+        console.log(cars.sort());
+        console.log(cars.reverse());
+
+        console.log(cars.filter((value, index, array) => index > 5));
+        console.log(cars.find(value => value === 'Tesla'));
+
+        console.log('Hello World'.split(''));
+
+        // Exercice Palindrome
+        let chaine = "Elu par cette crapule";
+        console.log( chaine.split('').reverse().join('') );
+
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        let mapNumbers = numbers.map(function (value) {
+            return value*10;
+        });
+
+        console.log(mapNumbers, numbers);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

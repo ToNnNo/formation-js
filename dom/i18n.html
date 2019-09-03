@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>i18n</title>
+    <script>
+        let option = {
+            year: 'numeric', month: 'long', day: 'numeric',
+            hour: 'numeric', minute: 'numeric', second: 'numeric',
+            weekday: 'long', era: 'long'
+        };
+
+        function __(lang = 'fr-fr', devise = 'EUR'){
+            let number = new Intl.NumberFormat(lang);
+            let currency = new Intl.NumberFormat(lang, {
+                style: 'currency', currency: devise
+            });
+            let date = new Intl.DateTimeFormat(lang, option);
+
+            document.querySelector('#pop').innerText = number.format(67190640.9);
+            document.querySelector('#price').innerText = currency.format(9999.99);
+            document.querySelector('#date').innerText = date.format(new Date());
+        }
+
+        window.addEventListener('DOMContentLoaded', function(){
+            let pays = document.querySelector('#pays');
+            let devise = document.querySelector('#devise');
+
+            pays.addEventListener('change', function(){
+                __(pays.value, devise.value);
+            });
+
+            devise.addEventListener('change', function(){
+                __(pays.value, devise.value);
+            });
+
+            __();
+        });
+
+    </script>
+</head>
+<body>
+
+<h1>Internationalisation</h1>
+<hr />
+
+<select id="pays">
+    <option value="fr-FR">Français</option>
+    <option value="de-DE">Allemand</option>
+    <option value="en-EN">Anglais</option>
+</select>
+
+<select id="devise">
+    <option value="EUR">Euro</option>
+    <option value="GBP">Livre</option>
+    <option value="USD">Dollar</option>
+    <option value="JPY">YEN</option>
+</select>
+
+<h2>Nombre</h2>
+<p>
+    Population: <span id="pop"></span>
+</p>
+
+<h2>Devise</h2>
+<p>
+    Prix d'un voyage ailleurs: <span id="price"></span>
+</p>
+
+<h2>Date</h2>
+<p>
+    Nous sommes le <span id="date"></span>
+</p>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invite</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script>
+        let guests = [];
+
+        function removeGuestNode(name){
+            guests.splice( guests.indexOf(name), 1);
+            createGuestNode();
+        }
+
+        function createGuestNode(){
+            let ul = document.querySelector('#guest');
+            ul.innerHTML = null;
+
+            for( name of guests ){
+
+                let li = document.createElement("li");
+                let a = document.createElement("a");
+                a.setAttribute('href', '#');
+                a.dataset.name = name;
+                a.addEventListener('click', function(e){
+                    e.preventDefault();
+                    removeGuestNode(this.dataset.name);
+                } );
+
+                a.innerText = name;
+
+                li.appendChild(a);
+                ul.appendChild(li);
+            }
+
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){
+            let input = document.querySelector("input.form-control");
+            let button = document.querySelector('button.btn');
+
+            button.addEventListener('click', function(){
+                if(input.value !== "") {
+                    guests.push(input.value);
+                    input.value = null;
+                    createGuestNode();
+                }
+            });
+
+            input.addEventListener('keydown', function(e){
+                if(e.key === "Enter"){
+                    if(input.value !== "") {
+                        guests.push(input.value);
+                        input.value = null;
+                        createGuestNode();
+                    }
+                }
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+<main class="container">
+    <h1 class="pt-2">Liste des invités</h1>
+    <hr />
+
+    <div class="input-group my-2">
+        <input type="text" class="form-control" placeholder="Entrer le nom d'un invité" />
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary">Ajouter</button>
+        </div>
+    </div>
+
+    <ul id="guest"></ul>
+
+</main>
+
+</body>
+</html>

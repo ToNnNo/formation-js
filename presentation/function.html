@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function</title>
+    <script>
+        function addition(a, b = 0){
+            return a + b;
+        }
+
+        console.log(`2 + 5 = ${addition(2, 5)}`);
+
+        console.log(addition(1));
+
+        let soustraction = function(a, b) {
+            return a - b;
+        };
+
+        console.log(soustraction(5, 2));
+
+        if( a === 1 )
+            console.log('a = 1');
+        else
+            console.log('a != 1');
+
+
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        console.table(numbers);
+
+        numbers.map( function(value) {
+            return value * 7;
+        });
+
+        // operateur arrow =>
+
+        numbers.map( (value) => {
+            return value * 7;
+        });
+
+        numbers.map( value => {
+            return value * 7;
+        });
+
+        numbers.map( value => value * 7 );
+
+        function a() {
+            console.log(this); // window
+        }
+
+        a();
+
+        let object = {
+            numbers,
+            paire: [],
+            foreach: function(){
+                // this = object
+                console.log('object', this); // object
+                let _this = this;
+                this.numbers.forEach(function(value){
+                    console.log(this); // window
+                    console.log(_this); // object
+                })
+            },
+
+            foreach2: function(){
+                this.numbers.forEach((value) => {
+                    console.log(this); // object
+                })
+            }
+        };
+
+        object.foreach();
+
+        object.foreach2();
+
+        for(let i = 0; i < 3; i++){
+            console.log(i);
+        }
+
+        console.log(`i = ${i}`);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

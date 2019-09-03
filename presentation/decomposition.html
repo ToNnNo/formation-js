@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Décomposition</title>
+    <script>
+        // Spread Operator
+
+        let chaine = ['Hello', 'World'];
+        let autreChaine = ['foo', 'bar', 'baz', ...chaine];
+
+        console.log(autreChaine);
+
+        // params variadic
+        function nothing(...params) {
+            console.log(params);
+        }
+
+        nothing(1, 2, 3, 4, 5);
+        nothing(...chaine);
+
+        function somme(...values){
+            let r = 0;
+            for( v of values ){
+                console.log(v);
+                r += v;
+            }
+
+            return r;
+        }
+
+        console.log( somme(1, 2, 3, 4, 5, 6, 7, 8, 9) );
+
+        let str = 'Hello World';
+        console.log( [...str] ); // identique à str.split('')
+
+        let fruits = ['Pomme', 'Banane', 'Poire', 'Cerise'];
+
+        // affectation par décomposition
+        let [pomme, banane, poire, cerise] = fruits;
+        console.log(pomme, banane, poire, cerise);
+
+        let [pm, , pr] = fruits;
+        console.log(pm, pr);
+
+        let [pomm, banan, poir, ceris, clementine = 'Clémentine', kiwi] = fruits;
+        console.log(pomm, banan, poir, ceris, clementine, kiwi);
+
+        if( kiwi === undefined ){
+            console.log("On n'a plis de Kiwi ...");
+        }
+
+        let a = 3, b = 7;
+
+        console.log(`a = ${a}, b = ${b}`);
+
+        [a, b] = [b, a];
+
+        console.log(`a = ${a}, b = ${b}`);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

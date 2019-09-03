@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+    <style>
+        .error{
+            background-color: rgba(255, 0, 0, 0.6);
+            border: 1px solid rgba(255, 0, 0, 1);
+            padding: 10px 7px;
+            color: #fff;
+        }
+    </style>
+    <script>
+
+        function server(){
+            let randTime = Math.floor( Math.random() * 5000 + 1000 );
+            let randError = Math.floor( Math.random() * 3 + 1 );
+
+            return new Promise( (resolve, reject) => {
+
+                setTimeout( () =>{
+
+                    if( randError === 1 ){
+                        reject('Serveur indisponible pour le moment');
+                    } else {
+                        resolve('Ceci est un message top secret mais asynchrone !');
+                    }
+
+                }, randTime);
+
+            } );
+
+        }
+
+        function loadData(){
+            let message = document.querySelector('#message');
+
+            message.classList.remove('error');
+            message.innerText = "En attente d'une réponse du serveur";
+
+            //callback hell
+            server().then( (data) => {
+                message.innerText = data;
+            } ).catch( (error) => {
+                message.innerText = error;
+                message.classList.add('error');
+            } );
+        }
+
+    </script>
+</head>
+<body>
+
+    <h1>Promise</h1>
+    <hr />
+
+    <button onclick="loadData()">récupérer les données</button>
+
+    <p id="message"></p>
+
+</body>
+</html>

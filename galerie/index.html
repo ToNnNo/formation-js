@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Galerie</title>
+    <script>
+        function center(image){
+            document.querySelector("#center").src = image;
+        }
+    </script>
+    <style>
+        img:hover{ cursor: pointer }
+    </style>
+</head>
+<body>
+    <table style="width:1014px;background-color: black;margin:auto">
+        <tr>
+            <td style="width:250px">
+                <img src="./images/image_1P.jpg" alt="image 1"
+                     onmouseover="this.src='./images/image_1C.jpg'"
+                     onmouseleave="this.src='./images/image_1P.jpg'"
+                     onclick="center('./images/image_1G.jpg')" />
+            </td>
+            <td rowspan="2">
+                <img src="" alt="center" id="center" />
+            </td>
+            <td style="width:250px">
+                <img src="./images/image_2P.jpg" alt="image 1"
+                     onmouseover="this.src='./images/image_2C.jpg'"
+                     onmouseleave="this.src='./images/image_2P.jpg'"
+                     onclick="center('./images/image_2G.jpg')" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="./images/image_3P.jpg" alt="image 1"
+                     onmouseover="this.src='./images/image_3C.jpg'"
+                     onmouseleave="this.src='./images/image_3P.jpg'"
+                     onclick="center('./images/image_3G.jpg')" />
+            </td>
+            <td>
+                <img src="./images/image_4P.jpg" alt="image 1"
+                     onmouseover="this.src='./images/image_4C.jpg'"
+                     onmouseleave="this.src='./images/image_4P.jpg'"
+                     onclick="center('./images/image_4G.jpg')" />
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
