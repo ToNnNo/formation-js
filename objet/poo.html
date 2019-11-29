@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Les objets</title>
+    <script>
+
+        // JSON = JavaScript Object Notation
+
+        let object = new Object();
+        object.foo = 'bar';         // Attribut
+        object.baz = function(){    // Method (private)
+            return 'Hello';
+        };
+
+        // constructeur
+        function Personne(first, last, age){
+            this.first = first;
+            this.last = last;
+            this.age = age;
+        }
+
+        Personne.prototype.getAge = function(){
+            return this.age;
+        };
+
+        let p = new Personne('jean', 'durand', 55);
+
+        console.log(p, `${p.first} ${p.last} a ${p.getAge()} ans`);
+
+        let person = new Object();
+        person.first = 'Jean';
+        person.last = 'Durand';
+        person.age = 55;
+        person.getAge = function(){
+            return this.age;
+        };
+
+        console.log(person,
+            `${person.first} ${person.last} a ${person.getAge()} ans`);
+
+
+        let json = {
+            foo: 'bar', baz: 1, bool: true,
+            users: [], private: { public: 'protected'}
+        };
+
+        let es6Object = {
+            foo: 'bar',
+            baz() {
+               return 'Hello';
+            },
+            quux: function(){
+                return 'World';
+            }
+        };
+
+        console.log(`Hello ${es6Object.foo}`, es6Object.baz());
+
+        class Voiture {
+            constructor(marque, modele, couleur){
+                this._marque = marque;
+                this._modele = modele;
+                this._couleur = couleur;
+            }
+
+            get marque() {
+                return this._marque; // getter
+            }
+
+            set marque(marque) {
+                this._marque = marque;
+            }
+
+            get modele() {
+                return this._modele;
+            }
+
+            set modele(value) {
+                this._modele = value;
+            }
+
+            get couleur() {
+                return this._couleur;
+            }
+
+            set couleur(value) {
+                this._couleur = value;
+            }
+
+            demarrer() {
+                return `La ${this.constructor.name.toLowerCase()} démarre`;
+            }
+
+            static klaxonner() {
+                return "Pouet Pouet !";
+            }
+        }
+
+        class Amblance extends Voiture {
+
+            constructor(marque, modele, couleur) {
+                super(marque, modele, couleur);
+                this.sirene = false;
+            }
+
+            demarrer() {
+                let r = '';
+                if( this.sirene )
+                    r += 'Pim Pom';
+
+                return `${r} ${super.demarrer()}`;
+            }
+
+            static klaxonner() {
+                return `Pim Pom ${Voiture.klaxonner()}`;
+            }
+        }
+
+        let voiture = new Voiture('ferrari', 'F40', 'Rouge');
+        console.log( voiture.demarrer() );
+        console.log( voiture );
+
+        voiture.marque = 'Ferrari';
+
+        console.log( voiture.marque, voiture._marque ); // getter
+
+        console.log( Voiture.klaxonner() );
+
+        let amblance = new Amblance('Renault', 'Kangoo', 'Blanche');
+        console.log(Amblance.klaxonner());
+
+        let camion = [voiture, amblance];
+
+        for( vehicule of camion ) {
+            if( vehicule instanceof Amblance)
+                vehicule.sirene = true;
+
+            console.log(vehicule.demarrer());
+        }
+
+        console.log( typeof voiture ); // object
+
+        console.log( voiture instanceof Voiture ); // true
+        console.log( voiture instanceof Object ); // true
+
+        console.log( [] instanceof Object ); // true
+        console.log( [] instanceof Array ); // true
+
+        console.log(voiture.constructor.name); // Voiture
+        console.log((2).constructor.name); // Number
+        console.log([].constructor.name); // Array
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
